@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  <index-child />
+  <index-child2 />
+</view>
