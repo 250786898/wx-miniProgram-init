@@ -1,4 +1,4 @@
-const BASE_URL = 'https://shop.freshlejia.com/apiStore/'  //接口请求的基本路径
+const BASE_URL = 'https://zhenjiu.wufen21.com/api/'  //接口请求的基本路径
 
 export default {
   BASE_URL,

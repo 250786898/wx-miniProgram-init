@@ -1,68 +1,14 @@
-/**
- * @description 获取一个验证码随机数
- */
-export const getRandomNumOfVerifyCode = () => {
-  const randomNum = Math.random()
-      .toString(36)
-      .substr(2, 9)
-  return randomNum 
-} 
-
+import { promisifyAll } from 'miniprogram-api-promise';
 
 /**
- * @param {string} message 提示的信息
- * @param {boolean||string||number} isModal 填入则默认直接显示modal框
- * @description 成功提示，超过7个字显示modal框，少于则显示toast
+ * @description promise化小程序api接口
+ * @returns {object} promise化后api集合
  */
-export const successRemind = (message,isModal = false) => {
-  if (typeof message === 'string') {
-    if (message.length > 7 || isModal) {
-      wx.showModal({
-        title:  '提示',
-        content: message,
-        image: '/images/common_ic_successful.png',
-      })
-    } else {
-      wx.showToast({
-        title: message,
-        icon: 'success'
-      })
-    }
-  } else {
-    wx.showToast({
-      title: message,
-      icon: 'success'
-    })
-  }
-
-}
-
-/**
- * @param {string} message 提示的信息
- * @param {boolean||string||number} isModal 填入则默认直接显示modal框
- * @description 错误提示，超过7个字显示modal框，少于则显示toast
- */
-export const errorRemind = (message, isModal) => {
-  if (typeof message === 'string') {
-    if (message.length > 7 || isModal) {
-      wx.showModal({
-        title:  '提示',
-        content: message,
-        image: '/images/error.png',
-        showCancel: false
-      })
-    } else {
-      wx.showToast({
-        title: message,
-        image: '/images/error.png'
-      })
-    }
-  } else {
-    wx.showToast({
-      title: '操作失败',
-      image: '/images/error.png'
-    })
-  }
+export function promiseWXApi() {
+  const wxp = {}
+  // promisify all wx's api
+  promisifyAll(wx, wxp)
+  return wxp
 }
 
 /**

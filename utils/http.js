@@ -9,12 +9,9 @@ fly.config.baseURL = config.BASE_URL
 //请求拦截器
 fly.interceptors.request.use(request => {
   //拦截处理
-  request.headers = {
-    // appkey: config.appkey,
+  request.headers = { //请求头
     "Content-Type": "application/x-www-form-urlencoded",
   }
-  request.dataType = "text"
-  request.parseJson = false
   return request
 })
 
